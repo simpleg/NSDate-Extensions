@@ -105,6 +105,17 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [formatter stringFromDate:self];
 }
 
+- (NSString *) prettyFormatDate {
+    NSDateFormatter *formatter = [NSDate formatter];
+    formatter.timeStyle = NSDateFormatterNoStyle;
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    formatter.locale = [NSLocale currentLocale];
+    formatter.doesRelativeDateFormatting = YES;
+    NSString *dateString = [formatter stringFromDate:self];
+    NSLog(@"dateString: %@", dateString);
+    return dateString;
+}
+
 - (NSString *) shortString
 {
     return [self stringWithDateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
