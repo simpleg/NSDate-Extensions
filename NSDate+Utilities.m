@@ -112,7 +112,6 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     formatter.locale = [NSLocale currentLocale];
     formatter.doesRelativeDateFormatting = YES;
     NSString *dateString = [formatter stringFromDate:self];
-    NSLog(@"dateString: %@", dateString);
     return dateString;
 }
 
