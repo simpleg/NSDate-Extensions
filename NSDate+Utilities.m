@@ -29,6 +29,13 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return sharedCalendar;
 }
 
++ (NSDateFormatter *) formatter {
+    static NSDateFormatter *sharedFormatter = nil;
+    if(!sharedFormatter)
+        sharedFormatter = [NSDateFormatter new];
+    return sharedFormatter;
+}
+
 #pragma mark - Relative Dates
 
 + (NSDate *) dateWithDaysFromNow: (NSInteger) days
@@ -84,15 +91,14 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 #pragma mark - String Properties
 - (NSString *) stringWithFormat: (NSString *) format
 {
-    NSDateFormatter *formatter = [NSDateFormatter new];
-//    formatter.locale = [NSLocale currentLocale]; // Necessary?
+    NSDateFormatter *formatter = [NSDate formatter];
     formatter.dateFormat = format;
     return [formatter stringFromDate:self];
 }
 
 - (NSString *) stringWithDateStyle: (NSDateFormatterStyle) dateStyle timeStyle: (NSDateFormatterStyle) timeStyle
 {
-    NSDateFormatter *formatter = [NSDateFormatter new];
+    NSDateFormatter *formatter = [NSDate formatter];
     formatter.dateStyle = dateStyle;
     formatter.timeStyle = timeStyle;
 //    formatter.locale = [NSLocale currentLocale]; // Necessary?
