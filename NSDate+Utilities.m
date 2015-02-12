@@ -33,6 +33,11 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     static NSDateFormatter *sharedFormatter = nil;
     if(!sharedFormatter)
         sharedFormatter = [NSDateFormatter new];
+    
+    sharedFormatter.timeStyle = NSDateFormatterNoStyle;
+    sharedFormatter.dateStyle = NSDateFormatterNoStyle;
+    sharedFormatter.locale = [NSLocale currentLocale];
+    sharedFormatter.doesRelativeDateFormatting = NO;
     return sharedFormatter;
 }
 
